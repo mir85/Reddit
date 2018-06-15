@@ -24,10 +24,11 @@ public class TalkingClock {
         String hour = String.valueOf(getTimeArray[0]) + String.valueOf(getTimeArray[1]);
         int hourint =  Integer.parseInt(hour);
         String min = String.valueOf(getTimeArray[3]) + String.valueOf(getTimeArray[4]);
+        int minint = Integer.parseInt(min);
         String min1 = String.valueOf(getTimeArray[3]);
+        int minint1 = Integer.parseInt(min1);
         String min2 = String.valueOf(getTimeArray[4]);
-
-
+        int minint2 = Integer.parseInt(min2);
 
         String ampm = " pm";
 
@@ -41,19 +42,20 @@ public class TalkingClock {
                     System.out.print("It is " + hoursWord[i]);
                     if (min.contains("00")) {
                         System.out.println(ampm);
-                    } else if (Integer.parseInt(min) <= 20) {
-                        for (int j = 0; j < mins.length; j++) {
+                        break;
+                    } else {if (minint <= 20) {
+                        for (int j = 0; j < mins.length; ++j) {
                             if (mins[j].contains(min))
-                                System.out.print(" " + minutesWord[j - 1] + ampm);
+                                System.out.print(" " + minutesWord[j] + ampm);
                             break;
                         }
-                    } else if (Integer.parseInt(min) < 60 && Integer.parseInt(min) > 20) ;
+                    }
+                    }
                     {
-                        for (int k = 20; k < mins.length; k++) {
+                        for (int k = 20; k < mins.length; ++k) {
                             if (mins[k].contains(min1))
 
-                                System.out.print(" " + minutesWord[k - 1]);
-                            continue;
+                                System.out.print(" " + minutesWord[k]);
                         }
                         for (int l = 0; l < 10; l++) {
                             if (mins[l].contains(min2))
