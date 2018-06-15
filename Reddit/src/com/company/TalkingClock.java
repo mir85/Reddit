@@ -22,25 +22,47 @@ public class TalkingClock {
         char getTimeArray[] = getTime.toCharArray();
 
         String hour = String.valueOf(getTimeArray[0]) + String.valueOf(getTimeArray[1]);
+        int hourint =  Integer.parseInt(hour);
         String min = String.valueOf(getTimeArray[3]) + String.valueOf(getTimeArray[4]);
-
-        for (int i = 0; i < hours.length - 1; i++) {
-            if (Integer.parseInt(hour) < 12) {
-                if (hours[i].contains(hour)) {
-                    System.out.print("It is " + hoursWord[i] + " am");
-                    if (mins[i].contains(min))
-                        System.out.print("It is " + hoursWord[i] + " am");
-
-                } else if (hours[i].contains(hour)){
-
-                    System.out.println("It is " + hoursWord[i - 12] + " pm");
-                }
-            }
+        String min1 = String.valueOf(getTimeArray[3]);
+        String min2 = String.valueOf(getTimeArray[4]);
 
 
-            //System.out.println(hours[1] + " " + hoursWord[1]);
 
+        String ampm = " pm";
 
+        if (Integer.parseInt(hour) > 12) {
+            hourint = hourint - 12;
+            ampm = " pm";
         }
+
+            for (int i = 0; i < hours.length - 1; i++) {
+                if (Integer.parseInt(hours[i]) == hourint) {
+                    System.out.print("It is " + hoursWord[i]);
+                    if (min.contains("00")) {
+                        System.out.println(ampm);
+                    } else if (Integer.parseInt(min) <= 20) {
+                        for (int j = 0; j < mins.length; j++) {
+                            if (mins[j].contains(min))
+                                System.out.print(" " + minutesWord[j - 1] + ampm);
+                            break;
+                        }
+                    } else if (Integer.parseInt(min) < 60 && Integer.parseInt(min) > 20) ;
+                    {
+                        for (int k = 20; k < mins.length; k++) {
+                            if (mins[k].contains(min1))
+
+                                System.out.print(" " + minutesWord[k - 1]);
+                            continue;
+                        }
+                        for (int l = 0; l < 10; l++) {
+                            if (mins[l].contains(min2))
+                                System.out.print(" " + minutesWord[l - 1] + ampm);
+                        }
+                    }
+                }
+
+
+            }
     }
-}
+    }
