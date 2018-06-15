@@ -1,6 +1,10 @@
 package com.company;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.SimpleFormatter;
 
 public class TalkingClock {
 
@@ -17,7 +21,14 @@ public class TalkingClock {
 
         System.out.println("Time in format xx:xx");
         Scanner scan = new Scanner(System.in);
-        String getTime = scan.next();
+        String getTime = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        getTime = scan.next();
+        try {
+            Date date = formatter.parse(getTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         char getTimeArray[] = getTime.toCharArray();
 
