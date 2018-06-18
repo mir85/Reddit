@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.SimpleFormatter;
 
 public class TalkingClock {
 
@@ -33,7 +32,7 @@ public class TalkingClock {
         char getTimeArray[] = getTime.toCharArray();
 
         String hour = String.valueOf(getTimeArray[0]) + String.valueOf(getTimeArray[1]);
-        int hourint =  Integer.parseInt(hour);
+        int hourint = Integer.parseInt(hour);
         String min = String.valueOf(getTimeArray[3]) + String.valueOf(getTimeArray[4]);
         int minint = Integer.parseInt(min);
         String min1 = String.valueOf(getTimeArray[3]);
@@ -48,34 +47,36 @@ public class TalkingClock {
             ampm = " pm";
         }
 
-            for (int i = 0; i < hours.length - 1; i++) {
-                if (Integer.parseInt(hours[i]) == hourint) {
-                    System.out.print("It is " + hoursWord[i]);
-                    if (min.contains("00")) {
-                        System.out.println(ampm);
-                        break;
-                    } else {if (minint <= 20) {
-                        for (int j = 0; j < mins.length; ++j) {
+        for (int i = 0; i < hours.length - 1; i++) {
+            if (Integer.parseInt(hours[i]) == hourint) {
+                System.out.print("It is " + hoursWord[i]);
+            }
+        }
+                if (min.contains("00")) {
+                    System.out.println(ampm);
+                }
+                else
+                    if (Integer.parseInt(min) <= 20) {
+                        for (int j = 0; j < mins.length; j++) {
                             if (mins[j].contains(min))
-                                System.out.print(" " + minutesWord[j] + ampm);
-                            break;
+                                if (Integer.parseInt(min) <= 10)
+                                System.out.print(" oh" + " " + minutesWord[j - 1] + ampm);
+                                else System.out.print(" " + minutesWord[j - 1] + ampm);
                         }
                     }
-                    }
-                    {
-                        for (int k = 20; k < mins.length; ++k) {
-                            if (mins[k].contains(min1))
+                else if (minint > 20 && minint < 60) {
+                    for (int k = 20; k < mins.length; ++k) {
+                        if (mins[k].contains(min1))
 
-                                System.out.print(" " + minutesWord[k]);
-                        }
-                        for (int l = 0; l < 10; l++) {
-                            if (mins[l].contains(min2))
-                                System.out.print(" " + minutesWord[l - 1] + ampm);
-                        }
+                            System.out.print(" " + minutesWord[k - 1]);
+                    }
+                    for (int l = 0; l < 10; l++) {
+                        if (mins[l].contains(min2))
+                            System.out.print(" " + minutesWord[l - 1] + ampm);
                     }
                 }
 
 
-            }
-    }
+
+        }
     }
