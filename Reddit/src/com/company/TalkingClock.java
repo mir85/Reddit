@@ -20,14 +20,16 @@ public class TalkingClock {
 
         System.out.println("Time in format xx:xx");
         Scanner scan = new Scanner(System.in);
-        String getTime = null;
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
-        getTime = scan.next();
-        try {
-            Date date = formatter.parse(getTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String getTime = scan.next();
+
+        int n = getTime(getTime);
+
+        if(n==1){
+                System.out.println("Valid date format");
+              }else{
+                System.out.println("Invalid date format");
+                System.exit(0);
+              }
 
         char getTimeArray[] = getTime.toCharArray();
 
@@ -79,4 +81,20 @@ public class TalkingClock {
 
 
         }
-    }
+    public static int getTime(String s1) {
+        if(s1.matches("[0-9]{2}[:]{1}[0-9]{2}"))
+            {
+            SimpleDateFormat sdf=new SimpleDateFormat("HH:mm");
+            sdf.setLenient(false);
+            try {
+                Date d1=sdf.parse(s1);
+                return 1;
+                } catch (ParseException e) {
+                return -1;
+                }
+            }
+        else
+          return -1;
+        }
+
+}
